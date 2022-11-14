@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-
+{{-- 
 @section('content')
-HOME for ADMIN
     
-@endsection
+@endsection --}}
