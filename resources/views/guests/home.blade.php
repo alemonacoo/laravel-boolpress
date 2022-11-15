@@ -16,7 +16,6 @@
 </head>
 <body> 
     <div id="root">
-        ciao
     </div>
 </body>
 </html>
