@@ -4,7 +4,9 @@
     <div class="row">
         <a class="my-4" href="{{route('admin.posts.create')}}">Nuovo</a>
         @foreach ($posts as $post)
-            <a href="{{route('admin.posts.show', $post->id)}}"><p>{{$post['title']}}</p></a>
+            <p>
+            <a href="{{route('admin.posts.show', $post->id)}}">{{$post['title']}}</a>
+            </p>
         @endforeach
 
     </div>

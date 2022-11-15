@@ -42,33 +42,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'title' => 'required|min:1|max:255',
-            'content' => 'required'
-        ]);
-
+        $this->validator($request);
         $data = $request->all();
         $newPost = new Post();
         $newPost->fill($data);
-
-        //Slug Function
-        $slug = Str::slug($newPost->title);
-        $slug_base = $slug;
-        $counter = 1;
-        $existingPost = Post::where('slug', $slug)->first();
-        while($existingPost){
-            $slug = $slug_base . '_' . $counter;
-            $existingPost = Post::where('slug', $slug)->first();
-            $counter++;
-        }
-        //
-
-        $newPost->slug = $slug;
+        $newPost->slug = $this->getSlug($newPost->title);
         $newPost->save();
-
         return redirect()->route('admin.posts.show', $newPost->id);
-        
-        
     }
 
     /**
@@ -92,6 +72,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -104,6 +85,14 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
+        $this->validator($request);
+        $edited_post = $request->all();
+        if($post->title != $edited_post['title']){
+            $edited_posts['slug'] = $this->getSlug($edited_post['title']);
+        }
+
+        $post->update($edited_post);
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
@@ -115,5 +104,25 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    private function getSlug($title){
+        $slug = Str::slug($title);
+        $slug_base = $slug;
+        $counter = 1;
+        $existingPost = Post::where('slug', $slug)->first();
+        while($existingPost){
+            $slug = $slug_base . '_' . $counter;
+            $existingPost = Post::where('slug', $slug)->first();
+            $counter++;
+        }
+        return $slug;
+    }
+
+    private function validator(Request $request){
+        $request->validate([
+            'title' => 'required|min:1|max:255',
+            'content' => 'required'
+        ]);
     }
 }
