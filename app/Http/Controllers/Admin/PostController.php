@@ -126,7 +126,8 @@ class PostController extends Controller
     private function validator(Request $request){
         $request->validate([
             'title' => 'required|min:1|max:255',
-            'content' => 'required'
+            'content' => 'required',
+            'category_id' => 'nullable|exists:categories,id'
         ]);
     }
 }

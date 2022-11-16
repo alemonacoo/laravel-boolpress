@@ -15,7 +15,7 @@
         <label for="category_id">Categoria:</label>
         <select name="category_id">
             @foreach ($categories as $category)
-            <option value="{{ $category->id }}">
+            <option value="{{ $category->id }} {{$category->id == old('category_id', -1) ? 'selected' : ''}}">
                 {{ $category->name }}
             </option>    
             @endforeach
