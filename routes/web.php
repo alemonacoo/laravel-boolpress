@@ -31,5 +31,7 @@ Route::middleware('auth')
 });
 
 Route::get("{any?}", function(){
-    return view("guests.home");
+    // return view("guests.home");
+    return redirect()->route('index');
+
 })->where("any", ".*"); 
