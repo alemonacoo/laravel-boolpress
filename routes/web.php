@@ -28,6 +28,7 @@ Route::middleware('auth')
     ->group(function(){
         Route::get('/', 'HomeController@index')->name('index');
         Route::resource('posts', 'PostController');
+        Route::resource('categories', 'CategoryController');
 });
 
 Route::get("{any?}", function(){
@@ -35,3 +36,4 @@ Route::get("{any?}", function(){
     return redirect()->route('index');
 
 })->where("any", ".*"); 
+
