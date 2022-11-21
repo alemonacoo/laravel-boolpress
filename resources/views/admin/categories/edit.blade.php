@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-    <form action="{{route('admin.categories.update', $category->id)}}" method="POST">
+    <form action="{{route('admin.categories.update', $category->slug)}}" method="POST">
     @csrf
     @method('PUT')
     <div>

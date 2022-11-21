@@ -7,7 +7,7 @@
     </button>
     @foreach ($categories as $category)
         <div class="col-12 my-2">
-        <a href="{{route('admin.categories.show', $category->id)}}">{{$category['name']}}</a>
+        <a href="{{route('admin.categories.show', $category->slug)}}">{{$category['name']}}</a>
         </div>
     @endforeach
 </div>

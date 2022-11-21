@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $category->fill($form_data);
         $category->slug = $this->getSlug($category->name);;
         $category->save();
-        return redirect()->route('admin.categories.show', $category->id);
+        return redirect()->route('admin.categories.show', $category->slug);
     }
 
     /**
@@ -91,7 +91,7 @@ class CategoryController extends Controller
             $form_data['slug'] = $this->getSlug($form_data['name']);
         }
         $category->update($form_data);
-        return redirect()->route('admin.categories.show', $category->id);
+        return redirect()->route('admin.categories.show', $category->slug);
     }
 
     /**

@@ -2,8 +2,8 @@
 
 @section('content')
     <h4>{{$category->name}}</h4>
-    <button class="my-2"><a href="{{ route('admin.categories.edit', $category->id) }}">Edit</a></button>
-    <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST">
+    <button class="my-2"><a href="{{ route('admin.categories.edit', $category->slug) }}">Edit</a></button>
+    <form action="{{ route('admin.categories.destroy', $category->slug) }}" method="POST">
     @csrf
     @method('DELETE')
     <button class="my-2" type="submit" value="delete">Delete</button>
