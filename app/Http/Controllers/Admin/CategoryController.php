@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class CategoryController extends Controller
 {
@@ -28,6 +30,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view('admin.categories.create');
     }
 
     /**
@@ -39,6 +42,19 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required|max:50'
+        ],[
+            'required' => 'Il campo è obbligatorio',
+            'max' => 'il nome deve essere massimo :max caratteri'
+        ]);
+
+        $form_data = $request->all();
+        $category = new Category();
+        $category->fill($form_data);
+        $category->slug = $this->getSlug($category->name);;
+        $category->save();
+        return redirect()->route('admin.categories.show', $category->id);
     }
 
     /**
@@ -85,5 +101,20 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //TODO: Should move in trait
+
+    private function getSlug($name){
+        $slug = Str::slug($name);
+        $slug_base = $slug;
+        $counter = 1;
+        $existingPost = Category::where('slug', $slug)->first();
+        while($existingPost){
+            $slug = $slug_base . '_' . $counter;
+            $existingPost = Category::where('slug', $slug)->first();
+            $counter++;
+        }
+        return $slug;
     }
 }
