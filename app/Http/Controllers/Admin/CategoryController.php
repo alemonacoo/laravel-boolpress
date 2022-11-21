@@ -42,13 +42,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'name' => 'required|max:50'
-        ],[
-            'required' => 'Il campo è obbligatorio',
-            'max' => 'il nome deve essere massimo :max caratteri'
-        ]);
-
+        $this->validator($request);
         $form_data = $request->all();
         $category = new Category();
         $category->fill($form_data);
@@ -75,9 +69,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
         //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -87,9 +82,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
         //
+        $this->validator($request);
+        $form_data = $request->all();
+        if($category->name != $form_data['name']){
+            $form_data['slug'] = $this->getSlug($form_data['name']);
+        }
+        $category->update($form_data);
+        return redirect()->route('admin.categories.show', $category->id);
     }
 
     /**
@@ -117,4 +119,15 @@ class CategoryController extends Controller
         }
         return $slug;
     }
+
+    private function validator(Request $request){
+        $request->validate([
+            'name' => 'required|max:50'
+        ],[
+            'required' => 'Il campo è obbligatorio',
+            'max' => 'il nome deve essere massimo :max caratteri'
+        ]);
+    }
+
+
 }
