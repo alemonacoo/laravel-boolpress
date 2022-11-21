@@ -56,7 +56,9 @@ class PostController extends Controller
         if(array_key_exists('tags', $data)){
             $newPost->tags()->sync($data['tags']);
         }
-        return redirect()->route('admin.posts.show', $newPost->id);
+
+        $slug = $newPost->slug;
+        return redirect()->route('admin.posts.show', $slug);
     }
 
     /**
@@ -96,19 +98,21 @@ class PostController extends Controller
     {
         //
         $this->validator($request);
-        $edited_post = $request->all();
-        if($post->title != $edited_post['title']){
-            $edited_posts['slug'] = $this->getSlug($edited_post['title']);
+        $form_data = $request->all();
+        if($post->title != $form_data['title']){
+            $form_data['slug'] = $this->getSlug($form_data['title']);
         }
     
-        if(array_key_exists('tags', $edited_post)){
-            $post->tags()->sync($edited_post['tags']);
+        if(array_key_exists('tags', $form_data)){
+            $post->tags()->sync($form_data['tags']);
         }else{
             $post->tags()->sync([]);
         }
 
-        $post->update($edited_post);
-        return redirect()->route('admin.posts.show', $post->id);
+        $post->update($form_data);
+
+        $slug = $post->slug;
+        return redirect()->route('admin.posts.show', $slug);
     }
 
     /**

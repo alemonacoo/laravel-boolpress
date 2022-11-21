@@ -7,7 +7,7 @@
         </button>
         @foreach ($posts as $post)
             <p>
-            <a href="{{route('admin.posts.show', $post->id)}}">{{$post['title']}}</a>
+            <a href="{{route('admin.posts.show', $post->slug)}}">{{$post['title']}}</a>
              @if ($post->category)
                 [{{$post->category->name}}]
              @endif

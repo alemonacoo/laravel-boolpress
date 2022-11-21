@@ -18,7 +18,7 @@
      <button>
      <a href="{{route('admin.posts.edit', $post)}}">Modifica</a>
      </button>
-     <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST">
+     <form action="{{route('admin.posts.destroy', $post->slug)}}" method="POST">
           @csrf
           @method('DELETE')
           <input onclick="confirm('Are you sure?')" type="submit" value="Cancella">

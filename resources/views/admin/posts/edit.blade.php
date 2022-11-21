@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <form action="{{ route('admin.posts.update', $post->id)}}" method="POST">
+    <form action="{{ route('admin.posts.update', $post->slug)}}" method="POST">
     @csrf
     @method('PATCH')
     <div>

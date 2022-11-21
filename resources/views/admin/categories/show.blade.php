@@ -12,7 +12,7 @@
 
     @foreach($category->posts as $post)   
     <div class="my-2">
-    <a href="{{route('admin.posts.show', $post->id)}}">{{$post['title']}}</a>
+    <a href="{{route('admin.posts.show', $post->slug)}}">{{$post['title']}}</a>
     [{{$category->name}}]
     </div>     
     @endforeach
