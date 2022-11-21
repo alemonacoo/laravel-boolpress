@@ -4,7 +4,7 @@
      <h5>{{$post->title}}</h3>
      <p>{{$post->content}}</p>
      @if ($post->category)
-          <p>CATEGORIA: {{ $post->category->name }}</p>
+          <p>CATEGORIA: <a href="{{ route('admin.categories.show', $post->category->id) }}"> {{ $post->category->name }}</a></p>
      @else
           <p>Nessuna Categoria</p>
      @endif
