@@ -22,7 +22,32 @@
             </option>    
             @endforeach
         </select>
+    </div>
+
+        {{-- Tags: --}}
+    @if($errors->any())
+        <div>
+        <label>Tags:</label>
+        @foreach ($tags as $tag)
+            <input 
+            {{ in_array($tag->id, old('tags', [])) ? 'checked' : ''}} 
+            type="checkbox" name="tags[]" value="{{$tag->id}}">
+        <label>{{ $tag['name']}}</label>
+
+        @endforeach
         </div>
+    @else
+        <div>
+        <label>Tags:</label>
+        @foreach ($tags as $tag)
+            <input 
+            {{ $post->tags->contains($tag) ? 'checked' : ''}} 
+            type="checkbox" name="tags[]" value="{{$tag->id}}">
+        <label>{{ $tag['name']}}</label>
+
+        @endforeach
+        </div>
+    @endif
     <input type="submit" value="Aggiorna">
     </form>
 @endsection
