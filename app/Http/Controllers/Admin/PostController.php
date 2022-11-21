@@ -50,11 +50,12 @@ class PostController extends Controller
         $data = $request->all();
         $newPost = new Post();
         $newPost->fill($data);
+        $newPost->slug = $this->getSlug($newPost->title);
+        $newPost->save();
+
         if(array_key_exists('tags', $data)){
             $newPost->tags()->sync($data['tags']);
         }
-        $newPost->slug = $this->getSlug($newPost->title);
-        $newPost->save();
         return redirect()->route('admin.posts.show', $newPost->id);
     }
 

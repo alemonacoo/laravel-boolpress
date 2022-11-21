@@ -3,6 +3,8 @@
 @section('content')
     <form action="{{ route('admin.posts.store')}}" method="POST">
     @csrf
+
+        {{-- Post --}}
     <div>
         <label for="title">Titolo:</label>
         <input type="text" required minlength="5" maxlength="255" name="title" value="{{old('title', ' ')}}">
@@ -11,6 +13,8 @@
         <label for="content">Contenuto:</label>
         <textarea name="content" required maxlength="255" cols="30" rows="10" value="{{old('content', ' ')}}"></textarea>
     </div>
+
+        {{-- Categories --}}
     <div>
     <label for="category_id">Categoria:</label>
     <select name="category_id">
@@ -20,6 +24,17 @@
         </option>    
         @endforeach
     </select>
+    </div>
+
+        {{-- Tags  --}}
+    <div>
+        <label>Tags:</label>
+        @foreach ($tags as $tag)
+        <label>{{ $tag['name']}}</label>
+            <input 
+            {{ in_array($tag->id, old('tags', [])) ? 'checked' : ''}} 
+            type="checkbox" name="tags[]" value="{{$tag->id}}">
+        @endforeach
     </div>
     <input type="submit" value="Crea">
 

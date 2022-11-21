@@ -8,6 +8,13 @@
      @else
           <p>Nessuna Categoria</p>
      @endif
+     <div>
+          Tags:
+     @foreach ($post->tags as $tag)
+          <span>{{$tag->name}}</span>
+     @endforeach
+     </div>
+
      <button>
      <a href="{{route('admin.posts.edit', $post)}}">Modifica</a>
      </button>
