@@ -37,6 +37,7 @@
         @endforeach
     </div>
     <input type="submit" value="Crea">
-
+ 
+    
     </form>
 @endsection
