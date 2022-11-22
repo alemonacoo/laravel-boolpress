@@ -15,6 +15,11 @@
      @endforeach
      </div>
 
+     <div class="my-2">
+          <img src="{{ asset('storage/' . $post->cover_path )}}" alt="{{ $post->title }}">
+     </div>
+
+
      <button>
      <a href="{{route('admin.posts.edit', $post)}}">Modifica</a>
      </button>

@@ -115,6 +115,13 @@ class PostController extends Controller
             $post->tags()->sync([]);
         }
 
+        if(array_key_exists('image', $form_data)){
+            if($post->cover_path){
+                Storage::delete($post->cover_path);
+            }
+            $form_data['cover_path'] = Storage::put('post_covers', $form_data['image']);
+        }
+
         $post->update($form_data);
 
         $slug = $post->slug;
@@ -131,6 +138,9 @@ class PostController extends Controller
     {
         //
         $post->tags()->sync([]);
+        if($post->cover_path){
+            Storage::delete($post->cover_path);
+        }
         $post->delete();
         return redirect()->route('admin.posts.index');
     }

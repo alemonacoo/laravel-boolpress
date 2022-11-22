@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <form action="{{ route('admin.posts.update', $post->slug)}}" method="POST">
+    <form action="{{ route('admin.posts.update', $post->slug)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
     <div>
@@ -48,6 +48,13 @@
         @endforeach
         </div>
     @endif
+
+    <div>
+        <label for="image">Carica un'immagine:</label>
+        <input type="file" name="image">
+        <img src="{{ asset('storage/' . $post->cover_path )}}" alt="{{ $post->title }}">
+    </div>
+
     <input type="submit" value="Aggiorna">
     </form>
 @endsection
