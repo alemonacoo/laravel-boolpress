@@ -8,6 +8,7 @@ use App\Tag;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 class PostController extends Controller
@@ -48,6 +49,11 @@ class PostController extends Controller
         //
         $this->validator($request);
         $data = $request->all();
+
+        if(array_key_exists('image', $data)){
+            $data['cover_path'] = Storage::put('post_covers', $data['image']);
+        }
+
         $newPost = new Post();
         $newPost->fill($data);
         $newPost->slug = $this->getSlug($newPost->title);
@@ -147,7 +153,8 @@ class PostController extends Controller
             'title' => 'required|min:1|max:255',
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
-            'tags' => 'exists:tags,id'
+            'tags' => 'exists:tags,id',
+            'img' => 'nullable|image|max:5120'
         ]);
     }
 }

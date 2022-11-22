@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <form action="{{ route('admin.posts.store')}}" method="POST">
+    <form action="{{ route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
 
         {{-- Post --}}
@@ -36,6 +36,17 @@
         <label>{{ $tag['name']}}</label>
         @endforeach
     </div>
+
+    <div>
+        <label for="image">Carica un'immagine:</label>
+        <input type="file" name="image" id="">
+
+    </div>
+
+
+
+
+
     <input type="submit" value="Crea">
  
     
