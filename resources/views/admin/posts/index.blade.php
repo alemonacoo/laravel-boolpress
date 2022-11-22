@@ -13,7 +13,6 @@
              @endif
             </p>
         @endforeach
-
     </div>
     
 @endsection
