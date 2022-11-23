@@ -14,4 +14,12 @@
         @method('DELETE')
         <input type="submit" value="Elimina">
     </form>
+
+    @foreach ($tag->posts as $post)
+        <div class="my-2">
+           <a href="{{ route('admin.posts.show', $post->slug) }}">{{ $post->title }}</a> 
+        </div>
+        
+    @endforeach
+
 @endsection
