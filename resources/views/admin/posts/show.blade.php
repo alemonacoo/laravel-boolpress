@@ -15,9 +15,11 @@
      @endforeach
      </div>
 
+     @if($post->cover_path)
      <div class="my-2">
           <img src="{{ asset('storage/' . $post->cover_path )}}" alt="{{ $post->title }}">
      </div>
+     @endif
 
 
      <button>
