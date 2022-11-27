@@ -37,7 +37,17 @@ export default {
     },
     methods: {
         showPost(id) {
-            console.log(id);
+            this.loading = true;
+            axios
+                .get("/api/posts/" + id)
+                .then((response) => {
+                    console.log(response);
+                    this.loading = false;
+                })
+                .catch((e) => {
+                    console.log("errore", e);
+                    this.loading = false;
+                });
         },
     },
 };
