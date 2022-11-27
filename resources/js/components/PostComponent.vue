@@ -21,6 +21,7 @@ export default {
             posts: [],
             errorMessage: "",
             loading: true,
+            detail: "",
         };
     },
     created() {

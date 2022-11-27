@@ -1914,7 +1914,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       posts: [],
       errorMessage: "",
-      loading: true
+      loading: true,
+      detail: ""
     };
   },
   created: function created() {
