@@ -21,7 +21,7 @@ export default {
 ul {
     display: flex;
     padding: 0;
-    margin: 10px;
+    margin: 10px 0;
     list-style-type: none;
     width: 100%;
     justify-content: space-evenly;

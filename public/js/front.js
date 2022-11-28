@@ -6621,7 +6621,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "ul[data-v-152c8205] {\n  display: flex;\n  padding: 0;\n  margin: 10px;\n  list-style-type: none;\n  width: 100%;\n  justify-content: space-evenly;\n}", ""]);
+exports.push([module.i, "ul[data-v-152c8205] {\n  display: flex;\n  padding: 0;\n  margin: 10px 0;\n  list-style-type: none;\n  width: 100%;\n  justify-content: space-evenly;\n}", ""]);
 
 // exports
 
