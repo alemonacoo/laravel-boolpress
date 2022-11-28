@@ -15,6 +15,7 @@ export default {
         return {
             nav: [
                 { path: "/", name: "Home" },
+                { path: "/posts", name: "Posts" },
                 { path: "/about", name: "Chi Siamo" },
                 { path: "/contacts", name: "Contatti" },
             ],
