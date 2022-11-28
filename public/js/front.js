@@ -1909,7 +1909,10 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "NavComponent"
+  name: "NavComponent",
+  props: {
+    nav: Array
+  }
 });
 
 /***/ }),
@@ -2023,6 +2026,20 @@ __webpack_require__.r(__webpack_exports__);
   name: "App",
   components: {
     NavComponent: _components_NavComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      nav: [{
+        path: "/",
+        name: "Home"
+      }, {
+        path: "/about",
+        name: "Chi Siamo"
+      }, {
+        path: "/contacts",
+        name: "Contatti"
+      }]
+    };
   }
 });
 
@@ -2042,19 +2059,15 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("nav", [_c("ul", [_c("li", [_c("router-link", {
-    attrs: {
-      to: "/"
-    }
-  }, [_vm._v("Home")])], 1), _vm._v(" "), _c("li", [_c("router-link", {
-    attrs: {
-      to: "/about"
-    }
-  }, [_vm._v("Chi siamo")])], 1), _vm._v(" "), _c("li", [_c("router-link", {
-    attrs: {
-      to: "/contacts"
-    }
-  }, [_vm._v("Contatti")])], 1)])]);
+  return _c("nav", [_c("ul", _vm._l(_vm.nav, function (link, index) {
+    return _c("li", {
+      key: index
+    }, [_c("router-link", {
+      attrs: {
+        to: link.path
+      }
+    }, [_vm._v(_vm._s(link.name))])], 1);
+  }), 0)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -2178,7 +2191,11 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("NavComponent"), _vm._v(" "), _c("router-view")], 1);
+  return _c("div", [_c("NavComponent", {
+    attrs: {
+      nav: _vm.nav
+    }
+  }), _vm._v(" "), _c("router-view")], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;

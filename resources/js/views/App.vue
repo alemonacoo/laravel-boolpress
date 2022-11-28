@@ -1,6 +1,6 @@
 <template>
     <div>
-        <NavComponent />
+        <NavComponent :nav="nav" />
         <router-view></router-view>
     </div>
 </template>
@@ -11,6 +11,15 @@ import NavComponent from "../components/NavComponent.vue";
 export default {
     name: "App",
     components: { NavComponent },
+    data() {
+        return {
+            nav: [
+                { path: "/", name: "Home" },
+                { path: "/about", name: "Chi Siamo" },
+                { path: "/contacts", name: "Contatti" },
+            ],
+        };
+    },
 };
 </script>
 

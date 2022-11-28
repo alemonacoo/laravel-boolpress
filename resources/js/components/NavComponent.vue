@@ -1,14 +1,8 @@
 <template>
     <nav>
         <ul>
-            <li>
-                <router-link to="/">Home</router-link>
-            </li>
-            <li>
-                <router-link to="/about">Chi siamo</router-link>
-            </li>
-            <li>
-                <router-link to="/contacts">Contatti</router-link>
+            <li v-for="(link, index) in nav" :key="index">
+                <router-link :to="link.path">{{ link.name }}</router-link>
             </li>
         </ul>
     </nav>
@@ -17,6 +11,9 @@
 <script>
 export default {
     name: "NavComponent",
+    props: {
+        nav: Array,
+    },
 };
 </script>
 
