@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>ERROR 404: Not Found</p>
+        <h1>ERROR 404: Not Found</h1>
         <router-link to="/">Back to home</router-link>
     </div>
 </template>
