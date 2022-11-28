@@ -49873,8 +49873,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/alessandromonaco/Desktop/Boolean/Esercizi/Esercizio63_laravel_api/laravel-api/resources/js/front.js */"./resources/js/front.js");
-module.exports = __webpack_require__(/*! /Users/alessandromonaco/Desktop/Boolean/Esercizi/Esercizio63_laravel_api/laravel-api/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/alessandromonaco/Desktop/Boolean/Esercizi/Esercizio64_laravel_boolpress/laravel-boolpress/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/alessandromonaco/Desktop/Boolean/Esercizi/Esercizio64_laravel_boolpress/laravel-boolpress/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
